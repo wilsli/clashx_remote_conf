@@ -1,0 +1,15 @@
+[Unit]
+Description=Provide ClashX remote configuration combined private proxies and Digua proxies
+After=syslog.target
+
+[Service]
+ExecStart=/opt/miniconda3/bin/uwsgi --ini /usr/clashx_remote_conf/clashx_remote_conf.ini
+PIDFile=/var/run/clashx_remote_conf.pid
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
